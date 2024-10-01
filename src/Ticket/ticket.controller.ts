@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, ForbiddenException, Get, NotFoundException, Param, Post, Request, UseGuards} from '@nestjs/common';
 import { TicketService } from './ticket.service';
-import { Ticket } from 'src/schemas/ticket.schema';
+import { TicketDTO } from 'src/DTO/ticket.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { Auth } from 'src/schemas/auth.schema';
 import { AdminGuard } from 'src/Auth/auth.guard';
@@ -14,7 +14,7 @@ export class TicketController {
 
     @Post ('create-ticket')
     @UseGuards(AdminGuard)
-    async generateticket(@Body() ticket: Ticket): Promise<Ticket>{
+    async generateticket(@Body() ticket: TicketDTO): Promise<TicketDTO>{
          const TicketCreated = await this.ticketservice.generateticket(ticket);
          return this.ticketservice.generateticket(ticket);
         // return this.ticketservice.generateticket(ticket, auth);
